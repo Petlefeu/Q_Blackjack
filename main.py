@@ -10,26 +10,27 @@ from pybrain.rl.explorers import EpsilonGreedyExplorer
 from blackjacktask import BlackjackTask
 from blackjackenv import BlackjackEnv
 
-# define action-value table
-# number of states is:
-#
-#    current value: 1-21
-#
-# number of actions:
-#
-#    Stand=0, Hit=1
-
 NB_ITERATION = 300
 MIN_VAL = 2
 MAX_VAL = 21
+Q_ALPHA = 0.5
+Q_GAMMA = 0.1
 
 def run():
-    """ Main function """
+    """
+    define action-value table
+
+    number of states is:
+    current value: 1-21
+
+    number of actions:
+    Stand=0, Hit=1 """
+
     av_table = ActionValueTable(MAX_VAL, MIN_VAL)
     av_table.initialize(0.)
 
     # define Q-learning agent
-    q_learner = Q(0.5, 0.1)
+    q_learner = Q(Q_ALPHA, Q_GAMMA)
     q_learner._setExplorer(EpsilonGreedyExplorer(0.0))
     agent = LearningAgent(av_table, q_learner)
 
@@ -48,7 +49,9 @@ def run():
         agent.learn()
         # agent.reset()
 
+    print '| First State       | Choice 0 (Stand)           | Choice 1 (Hit)  | Relative value of Hitting over Standing  |'
+    print '|:-------:|:-------|:-----|:-----|'
     for i in range(MAX_VAL):
-        print "The AV Value At ", (i+1), " is: ", av_table.getActionValues(i), av_table.getActionValues(i)[1] - av_table.getActionValues(i)[0]
+        print '| %s | %s | %s | %s |' % ((i+1), av_table.getActionValues(i)[0], av_table.getActionValues(i)[1], av_table.getActionValues(i)[1] - av_table.getActionValues(i)[0])
 
 run()
