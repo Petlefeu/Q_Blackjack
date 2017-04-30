@@ -12,7 +12,7 @@ class BlackjackTask(Task):
     Furthermore it is a filter for what should be visible to the agent.
     Also, it can potentially act as a filter on how actions are transmitted to the environment. """
 
-    def __init__(self, environment):
+    def __init__(self, environment, verbosity=False):
         """ All tasks are coupled to an environment. """
         super(BlackjackTask, self).__init__(environment)
         self.action = 0
@@ -21,6 +21,7 @@ class BlackjackTask(Task):
         # in the Q learning formula is the one from the last interaction,
         # not the one given for the current interaction!
         self.lastreward = 0
+        self.verbosity = verbosity
 
     def performAction(self, action):
         """ A filtered mapping towards performAction of the underlying environment. """
@@ -47,7 +48,10 @@ class BlackjackTask(Task):
             else:
                 self.lastreward = -1.0
             self.env.reset()
-        print "H: %s C: %s R: %s" % (cur_hand_value, self.action, self.lastreward)
+
+        if self.verbosity:
+            print "H: %s C: %s R: %s" % (cur_hand_value, self.action, self.lastreward)
+
         return self.lastreward
 
     @property

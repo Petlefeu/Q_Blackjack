@@ -12,6 +12,7 @@ from blackjackenv import BlackjackEnv
 
 # Debug
 # from pdb import set_trace as st
+VERBOSE = True
 
 NB_ITERATION = 300
 MIN_VAL = 2
@@ -41,7 +42,7 @@ def run():
     env = BlackjackEnv()
 
     # define the task
-    task = BlackjackTask(env)
+    task = BlackjackTask(env, verbosity=VERBOSE)
 
     # finally, define experiment
     experiment = Experiment(task, agent)
@@ -50,7 +51,8 @@ def run():
     for _ in range(NB_ITERATION):
         experiment.doInteractions(1)
         if task.lastreward != 0:
-            print "Agent learn"
+            if VERBOSE:
+                print "Agent learn"
             agent.learn()
 
     # agent.reset()
