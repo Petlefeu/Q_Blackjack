@@ -19,7 +19,7 @@ Le programme choisit un chiffre (ou deux cartes) au hasard entre 2 et 21 (état 
 Il a deux choix : Garder ses cartes (choix 0) ou en Prendre une nouvelle (choix 1).
 Le croupier possède aussi ses deux cartes de départ, mais n'en tire jamais de nouvelles.
 
-Enfin, si le joueur gagne il gagne 1€. Sinon, il perd 1€.
+Enfin, si le joueur gagne il gagne 10€. Sinon, il perd 10€.
 
 **Exemple :**
 
@@ -27,7 +27,7 @@ Enfin, si le joueur gagne il gagne 1€. Sinon, il perd 1€.
   - Le programme choisi le tirer une carte (choix **1**)
   - Le programme tire la carte 3 (nouvel état **18**)
   - Le croupier est battu (peu importe son score)
-  - Le programme gagne **+1**€
+  - Le programme gagne **+10**€
 
 La Q valeur de l'état 15 avec le choix 1 va augmenter.
 
