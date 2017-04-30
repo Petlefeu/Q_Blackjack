@@ -35,24 +35,20 @@ class BlackjackTask(Task):
     def getReward(self):
         """ Compute and return the current reward
         (i.e. corresponding to the last action performed) """
-        adv_hand_value = randint(self.indim, self.outdim) - 1
-        new_hand_value = self.env.hand_value
-        if self.action == 1:
-            new_hand_value += randint(2, 21)
+        cur_hand_value = self.env.hand_value
 
-        if new_hand_value >= adv_hand_value and new_hand_value <= 21:
-            cur_reward = 1.0
-        else:
-            cur_reward = -1.0
-
-        # print "reward : %s" % cur_reward
-        # reward = raw_input("Enter reward: ")
-
-        # retrieve last reward, and save current given reward
-        # cur_reward = self.lastreward
-        # self.lastreward = reward
-
-        return cur_reward
+        if self.action == 1 and self.env.hand_value > 0: # Bot draw card
+            self.lastreward = 0.0
+        else: # Bot stay or Hand is zero
+            # TODO : Dealer have to draw other cards...
+            dealer_hand_value = randint(self.indim, self.outdim)
+            if self.env.hand_value >= dealer_hand_value and self.env.hand_value <= self.env.outdim:
+                self.lastreward = 1.0
+            else:
+                self.lastreward = -1.0
+            self.env.reset()
+        print "H: %s C: %s R: %s" % (cur_hand_value, self.action, self.lastreward)
+        return self.lastreward
 
     @property
     def indim(self):

@@ -10,6 +10,9 @@ from pybrain.rl.explorers import EpsilonGreedyExplorer
 from blackjacktask import BlackjackTask
 from blackjackenv import BlackjackEnv
 
+# Debug
+# from pdb import set_trace as st
+
 NB_ITERATION = 300
 MIN_VAL = 2
 MAX_VAL = 21
@@ -44,19 +47,21 @@ def run():
     experiment = Experiment(task, agent)
 
     # ready to go, start the process
-    for i in range(NB_ITERATION):
+    for _ in range(NB_ITERATION):
         experiment.doInteractions(1)
-        agent.learn()
-        # agent.reset()
+        if task.lastreward != 0:
+            print "Agent learn"
+            agent.learn()
 
-    print '|First State|Choice 0 (Stand)|Choice 1 (Hit)|Relative value of Hitting over Standing|'
+    # agent.reset()
+    print '|First State|Choice 0 (Stand)|Choice 1 (Hit)|Relative value of Standing over Hitting|'
     print '|:-------:|:-------|:-----|:-----|'
     for i in range(MAX_VAL):
         print '| %s | %s | %s | %s |' % (
-            (i+1),
+            i,
             av_table.getActionValues(i)[0],
             av_table.getActionValues(i)[1],
-            av_table.getActionValues(i)[1] - av_table.getActionValues(i)[0]
+            av_table.getActionValues(i)[0] - av_table.getActionValues(i)[1]
         )
 
 run()
