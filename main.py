@@ -12,13 +12,13 @@ from blackjackenv import BlackjackEnv
 
 # Debug
 # from pdb import set_trace as st
-VERBOSE = True
+VERBOSE = False
 
 NB_ITERATION = 300
 MIN_VAL = 2
 MAX_VAL = 21
-Q_ALPHA = 0.5
-Q_GAMMA = 0.1
+Q_ALPHA = 0.2
+Q_GAMMA = 0.2
 
 def run():
     """

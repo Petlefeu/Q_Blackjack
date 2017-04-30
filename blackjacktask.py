@@ -44,9 +44,9 @@ class BlackjackTask(Task):
             # TODO : Dealer have to draw other cards...
             dealer_hand_value = randint(self.indim, self.outdim)
             if self.env.hand_value >= dealer_hand_value and self.env.hand_value <= self.env.outdim:
-                self.lastreward = 1.0
+                self.lastreward = 10.0
             else:
-                self.lastreward = -1.0
+                self.lastreward = -10.0
             self.env.reset()
 
         if self.verbosity:
