@@ -39,9 +39,10 @@ La Q valeur de l'état 15 avec le choix 1 va augmenter.
 ## Add PyBrain repository
 
 ```bash
-git clone git://github.com/pybrain/pybrain.git
-cd pybrain/
-sudo python setup.py install
+sudo pip install --upgrade pybrain
+
+# Apply fix https://github.com/pybrain/pybrain/issues/211
+# Files are present in pybrain_fix/
 ```
 
 ## Result

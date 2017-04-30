@@ -17,7 +17,8 @@ class BlackjackEnv(Environment):
     hand_value = 0
 
     def getSensors(self):
-        """ the currently visible state of the world (the    observation may be stochastic - repeated calls returning different values)
+        """ the currently visible state of the world (the
+            observation may be stochastic - repeated calls returning different values)
             :rtype: by default, this is assumed to be a numpy array of doubles
         """
         self.hand_value = randint(self.indim, self.outdim) - 1
