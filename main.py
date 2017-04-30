@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-""" BlackJack avec du Q-Learning """
+""" BlackJack with Q-Learning """
 
 from pybrain.rl.learners.valuebased import ActionValueTable
 from pybrain.rl.agents import LearningAgent
@@ -22,14 +22,13 @@ Q_GAMMA = 0.2
 
 def run():
     """
-    define action-value table
-
     number of states is:
-    current value: 1-21
+    current value: 0-20
 
     number of actions:
     Stand=0, Hit=1 """
 
+    # define action value table
     av_table = ActionValueTable(MAX_VAL, MIN_VAL)
     av_table.initialize(0.)
 
@@ -55,12 +54,11 @@ def run():
                 print "Agent learn"
             agent.learn()
 
-    # agent.reset()
     print '|First State|Choice 0 (Stand)|Choice 1 (Hit)|Relative value of Standing over Hitting|'
     print '|:-------:|:-------|:-----|:-----|'
     for i in range(MAX_VAL):
         print '| %s | %s | %s | %s |' % (
-            i,
+            (i+1),
             av_table.getActionValues(i)[0],
             av_table.getActionValues(i)[1],
             av_table.getActionValues(i)[0] - av_table.getActionValues(i)[1]
