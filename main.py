@@ -49,9 +49,14 @@ def run():
         agent.learn()
         # agent.reset()
 
-    print '| First State       | Choice 0 (Stand)           | Choice 1 (Hit)  | Relative value of Hitting over Standing  |'
+    print '|First State|Choice 0 (Stand)|Choice 1 (Hit)|Relative value of Hitting over Standing|'
     print '|:-------:|:-------|:-----|:-----|'
     for i in range(MAX_VAL):
-        print '| %s | %s | %s | %s |' % ((i+1), av_table.getActionValues(i)[0], av_table.getActionValues(i)[1], av_table.getActionValues(i)[1] - av_table.getActionValues(i)[0])
+        print '| %s | %s | %s | %s |' % (
+            (i+1),
+            av_table.getActionValues(i)[0],
+            av_table.getActionValues(i)[1],
+            av_table.getActionValues(i)[1] - av_table.getActionValues(i)[0]
+        )
 
 run()

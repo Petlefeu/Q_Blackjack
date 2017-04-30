@@ -17,20 +17,23 @@ class BlackjackEnv(Environment):
     hand_value = 0
 
     def getSensors(self):
-        """ the currently visible state of the world (the
-            observation may be stochastic - repeated calls returning different values)
+        """
+        The currently visible state of the world
+        The observation may be stochastic - repeated calls returning different values
             :rtype: by default, this is assumed to be a numpy array of doubles
         """
         self.hand_value = randint(self.indim, self.outdim) - 1
         return [float(self.hand_value),]
 
     def performAction(self, action):
-        """ perform an action on the world that changes it's internal state (maybe stochastically).
+        """
+        Perform an action on the world that changes it's internal state (maybe stochastically).
             :key action: an action that should be executed in the Environment.
             :type action: by default, this is assumed to be a numpy array of doubles
         """
         return action
 
     def reset(self):
-        """ Most environments will implement this optional method that allows for reinitialization.
+        """
+        Most environments will implement this optional method that allows for reinitialization.
         """
