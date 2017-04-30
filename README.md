@@ -33,35 +33,33 @@ La Q valeur de l'état 15 avec le choix 1 va augmenter.
 
 ## Go further with doInteraction()
 
+```
 Experiment Env (EE)
-
 Experiment Task (ET)
-
 Q Learner (QL)
-
 Q Agent (QA)
+```
 
+**Observations :**
 
-**Observations: **
-
+```
 QL --getObservation--> ET --getSensors--> EE
-
 QL --integrateObservation--> QA
+```
 
+**Action :**
 
-**Action: **
-
+```
 QL --getAction--> QA
-
 QL --performAction--> ET --performAction--> EE
+```
 
+**Reward :**
 
-**Reward: **
-
+```
 QL --getReward()--> ET (--reset--> EE)
-
 QL --giveReward --> QA
-
+```
 
 ## Add PyBrain repository
 
