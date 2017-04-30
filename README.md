@@ -13,8 +13,6 @@ In Q-Learning :
 
 ## Description
 
-### Français
-
 Le programme choisit un chiffre (ou deux cartes) au hasard entre 2 et 21 (état 2 à 21).
 Il a deux choix : Garder ses cartes (choix 0) ou en Prendre une nouvelle (choix 1).
 Le croupier possède aussi ses deux cartes de départ, mais n'en tire jamais de nouvelles.
@@ -33,8 +31,37 @@ La Q valeur de l'état 15 avec le choix 1 va augmenter.
 
 > Attention, l'état 18 ne va pas du tout être actualisé ! 
 
+## Go further with doInteraction()
 
-### English
+Experiment Env (EE)
+
+Experiment Task (ET)
+
+Q Learner (QL)
+
+Q Agent (QA)
+
+
+**Observations: **
+
+QL --getObservation--> ET --getSensors--> EE
+
+QL --integrateObservation--> QA
+
+
+**Action: **
+
+QL --getAction--> QA
+
+QL --performAction--> ET --performAction--> EE
+
+
+**Reward: **
+
+QL --getReward()--> ET (--reset--> EE)
+
+QL --giveReward --> QA
+
 
 ## Add PyBrain repository
 
